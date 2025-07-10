@@ -73,6 +73,32 @@ jobs:
           project_id: ${{ env.PROJECT_ID }}
       - run: gcloud info
       - run: gcloud config set project ${{ env.PROJECT_ID }}    
+       # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+    # Update Prompt synchronized prompt files in GCS bucket.
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry==1.7.1
+          poetry add --group dev 'pytest'
+          poetry install --with dev
+      - name: Run Calling Script
+        run: |
+          poetry run python sync.py \
+          --audience ${{ env.FRONTEND_API_URI }} \
+          --target_principal ${{ env.SERVICE_ACCOUNT }} \
+          --environment ${{ github.head_ref || github.ref_name }}
+
+      - name: 'Clean Up Python'
+        run: |
+          rm -rf /opt/hostedtoolcache/Python/*
+          rm -rf /home/runner/.cache/pypoetry/*
   
       - name: 'Deploy to Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@33553064113a37d688aa6937bacbdc481580be17' # google-github-actions/deploy-cloudrun@v2
