@@ -1,4 +1,4 @@
-from google.auth.impresionated_credentials import IDTokenCredentials
+from google.auth.impersonated_credentials import IDTokenCredentials
 import google.auth.transport.requests
 
 def generate_auth_token(audience: str, target_principal: str):
