@@ -14,7 +14,7 @@ def generate_auth_token(audience: str, target_principal: str):
     """
     print(audience)
     print(target_principal)
-    print( os.environ['GCP_SA_KEY'])
+    print( os.environ['TOKEN'])
     scopes = ['https://www.googleapis.com/auth/cloud-platform']
     source_credentials1 = (
     service_account.Credentials.from_service_account_file(
