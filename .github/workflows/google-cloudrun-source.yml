@@ -9,7 +9,7 @@ env:
   PROJECT_ID: 'manuelmata-dev' # TODO: update to your Google Cloud project ID
   REGION: 'us-central1' # TODO: update to your region
   SERVICE: 'my-service-from-pipeline' # TODO: update to your service name
-
+  TOKEN: ${{ secrets.GCP_SA_KEY }}
   BRANCH: ${{ github.head_ref || github.ref_name }}
   APP_NAME: plain-language-app
   JOB_NAME: plain-language-job
