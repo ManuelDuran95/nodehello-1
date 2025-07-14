@@ -1,5 +1,5 @@
+from google.auth.impresionated_credentials import IDTokenCredentials
 import google.auth.transport.requests
-from google.auth.credentials import IDTokenCredentials
 
 def generate_auth_token(audience: str, target_principal: str):
     """Generate Auth token needed to call API hosted on Cloud Run
