@@ -3,6 +3,7 @@ import google.auth
 import google.auth.transport.requests
 from google.auth import credentials
 from google.oauth2 import service_account
+import os
 def generate_auth_token(audience: str, target_principal: str):
     """Generate Auth token needed to call API hosted on Cloud Run
     Args:
@@ -13,6 +14,7 @@ def generate_auth_token(audience: str, target_principal: str):
     """
     print(audience)
     print(target_principal)
+    print( os.environ['GCP_SA_KEY'])
     scopes = ['https://www.googleapis.com/auth/cloud-platform']
     source_credentials1 = (
     service_account.Credentials.from_service_account_file(
