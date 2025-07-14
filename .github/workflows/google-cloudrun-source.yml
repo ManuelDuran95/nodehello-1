@@ -52,15 +52,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install google-auth==2.19.1
           pip install --upgrade google-api-python-client
-          pip install poetry==1.7.1
-          poetry init
-          poetry add --group dev 'pytest'
-          poetry install --with dev
+       
           
           
       - name: Run Calling Script
         run: |
-          poetry run python sync.py
+          python sync.py
           
       - name: 'Deploy to Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@33553064113a37d688aa6937bacbdc481580be17' # google-github-actions/deploy-cloudrun@v2
