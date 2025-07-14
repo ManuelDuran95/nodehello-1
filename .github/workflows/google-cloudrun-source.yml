@@ -43,7 +43,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v1'
   # Update Prompt synchronized prompt files in GCS bucket.
       - name: Create file
-        run: cat /home/google-services.json | base64
+        run: touch /home/google-services.json | base64
       - name: Putting data
         env:
           DATA: ${{ secrets.GCP_SA_KEY }}
