@@ -50,17 +50,16 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install google-auth==2.19.1
           pip install poetry==1.7.1
           poetry init
           poetry add --group dev 'pytest'
           poetry install --with dev
           
+          
       - name: Run Calling Script
         run: |
-          poetry run python sync.py \
-          --audience ${{ env.FRONTEND_API_URI }} \
-          --target_principal ${{ env.SERVICE_ACCOUNT }} \
-          --environment ${{ github.head_ref || github.ref_name }}
+          poetry run python sync.py
           
       - name: 'Deploy to Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@33553064113a37d688aa6937bacbdc481580be17' # google-github-actions/deploy-cloudrun@v2
