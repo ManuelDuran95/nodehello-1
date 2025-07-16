@@ -3,6 +3,8 @@ import google.auth
 import google.auth.transport.requests
 from google.auth import credentials
 from google.oauth2 import service_account
+import requests
+import json
 
 def generate_auth_token(audience: str, target_principal: str):
     """Generate Auth token needed to call API hosted on Cloud Run
@@ -25,7 +27,17 @@ def generate_auth_token(audience: str, target_principal: str):
     id = IDTokenCredentials(icreds, target_audience=audience,include_email=True)
     id.refresh(request)
     print(id.token)
+    toke=id.token
+    headers = {
+        'Authorization': f'Bearer {toke}'
+    }
+    response = requests.get('https://python-test34-95436488673.europe-west1.run.app', headers=headers)
+    response.raise_for_status()
+    # Print the status code
+    print(f"Status Code: {response.status_code}")
+    data = response.json()
+    print(data)
     return id.token
-audience="test"
-sa1="firebase-app-hosting-compute@manuelmata-dev.iam.gserviceaccount.com"
+audience="https://python-test34-95436488673.europe-west1.run.app"
+sa1="test112024@manuelmata-dev.iam.gserviceaccount.com"
 generate_auth_token(audience,sa1)
