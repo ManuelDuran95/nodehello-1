@@ -15,7 +15,7 @@ env:
   JOB_NAME: plain-language-job
   GROUNDING_JOB_NAME: plain-language-grounding-job
   REPO_NAME: nodehello-1
-  SERVICE_ACCOUNT: ${{ vars.SERVICE_ACCOUNT  }}
+  SERVICE_ACCOUNT: 'test112024@manuelmata-dev.iam.gserviceaccount.com'
   WORKLOAD_IDENTITY_PROVIDER: projects/95436488673/locations/global/workloadIdentityPools/github/providers/my-repo
   CICD_SERVICE_ACCOUNT: ${{ vars.CICD_SERVICE_ACCOUNT  }}
   BUCKET_NAME: ${{ vars.BUCKET_NAME }}
@@ -37,7 +37,7 @@ jobs:
         name: 'Google Cloud Auth'
         uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2'
         with:
-         project_id: '${{env.PROJECT_ID}}'
+         service_account: '${{env.SERVICE_ACCOUNT}}'
          workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
           
   #     - run: gcloud info
