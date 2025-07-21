@@ -37,7 +37,7 @@ jobs:
         name: 'Google Cloud Auth'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
-         service_account: '${{env.SERVICE_ACCOUNT}}'
+         project_id: 'manuelmata-dev'
          workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
           
   #     - run: gcloud info
