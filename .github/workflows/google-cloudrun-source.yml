@@ -30,12 +30,12 @@ jobs:
       id-token: 'write'
 
     steps:
-      # - name: 'Checkout'
-      #   uses: 'actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332' 
+      - name: 'Checkout'
+        uses: 'actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332' 
         
       - id: 'auth'
         name: 'Google Cloud Auth'
-        uses: 'google-github-actions/auth@v0.4.0'
+        uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2'
         with:
          project_id: 'manuelmata-dev'
          workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
