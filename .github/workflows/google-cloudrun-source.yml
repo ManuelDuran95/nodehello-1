@@ -16,7 +16,7 @@ env:
   GROUNDING_JOB_NAME: plain-language-grounding-job
   REPO_NAME: nodehello-1
   SERVICE_ACCOUNT: ${{ vars.SERVICE_ACCOUNT  }}
-  WORKLOAD_IDENTITY_PROVIDER: ${{ vars.WORKLOAD_IDENTITY_PROVIDER }}
+  WORKLOAD_IDENTITY_PROVIDER: projects/95436488673/locations/global/workloadIdentityPools/github/providers/my-repo
   CICD_SERVICE_ACCOUNT: ${{ vars.CICD_SERVICE_ACCOUNT  }}
   BUCKET_NAME: ${{ vars.BUCKET_NAME }}
   FRONTEND_API_URI: ${{ vars.FRONTEND_API_URI }}
@@ -32,11 +32,14 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: 'actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332' 
-      - name: 'Google Cloud Auth'
-        uses: 'google-github-actions/auth@v2'
+        
+      - id: 'auth'
+        name: 'Google Cloud Auth'
+        uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2'
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
-          project_id: ${{ env.PROJECT_ID }}
+         project_id: '${{env.PROJECT_ID}}'
+         workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
+          
       - run: gcloud info
       - run: gcloud config set project ${{ env.PROJECT_ID }}    
       - name: 'Set up Cloud SDK'
