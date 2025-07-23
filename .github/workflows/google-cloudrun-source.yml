@@ -16,7 +16,7 @@ env:
   GROUNDING_JOB_NAME: plain-language-grounding-job
   REPO_NAME: nodehello-1
   SERVICE_ACCOUNT: 'test112024@manuelmata-dev.iam.gserviceaccount.com'
-  WORKLOAD_IDENTITY_PROVIDER: projects/95436488673/locations/global/workloadIdentityPools/github/providers/my-repo
+  WORKLOAD_IDENTITY_PROVIDER: projects/95436488673/locations/global/workloadIdentityPools/test
   CICD_SERVICE_ACCOUNT: ${{ vars.CICD_SERVICE_ACCOUNT  }}
   BUCKET_NAME: ${{ vars.BUCKET_NAME }}
   FRONTEND_API_URI: ${{ vars.FRONTEND_API_URI }}
